@@ -5,14 +5,23 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.batura.wishlist.ListasRecyclerAdapter;
 import com.example.batura.wishlist.R;
+import com.example.batura.wishlist.model.Product;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ListasFragment extends Fragment {
+
+    RecyclerView rv;
+
     public ListasFragment() {
     }
 
@@ -36,6 +45,13 @@ public class ListasFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        rv = view.findViewById(R.id.rvListas);
+        List<Product> products = new ArrayList<>();
+        Product product = new Product(0, "calcetines", "enlace");
+        Product product1 = new Product(0, "calcetines2", "enlace3");
+        products.add(product);
+        products.add(product1);
+        rv.setAdapter(new ListasRecyclerAdapter(products, getContext()));
     }
 
     @Override

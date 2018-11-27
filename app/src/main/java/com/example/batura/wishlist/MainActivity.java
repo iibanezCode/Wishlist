@@ -17,9 +17,13 @@ import com.example.batura.wishlist.fragments.CuentaFragment;
 import com.example.batura.wishlist.fragments.FamiliasFragment;
 import com.example.batura.wishlist.fragments.ListasFragment;
 import com.example.batura.wishlist.fragments.MiListaFragment;
+import com.example.batura.wishlist.model.Product;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    List<Product> products;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +84,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_Listas) {
+            // crearLista();
             getSupportFragmentManager().beginTransaction().replace(R.id.contentMain, ListasFragment.newInstance()).commit();
         } else if (id == R.id.nav_Familias) {
             getSupportFragmentManager().beginTransaction().replace(R.id.contentMain, FamiliasFragment.newInstance()).commit();
@@ -92,6 +97,13 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void crearLista() {
+        Product product = new Product(0, "calcetines", "enlace");
+        Product product1 = new Product(0, "calcetines2", "enlace3");
+        products.add(product);
+        products.add(product1);
     }
 
     private void checkSharedPreferences() {
