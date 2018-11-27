@@ -7,11 +7,13 @@ public class Product implements Serializable {
     private int id;
     private String name;
     private String url;
+    private String username;
 
-    public Product(int id, String name, String url) {
+    public Product(int id, String name, String url, String username) {
         this.id = id;
         this.name = name;
         this.url = url;
+        this.username = username;
     }
 
     public Product() {
@@ -41,12 +43,21 @@ public class Product implements Serializable {
         this.url = url;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", url='" + (!url.equals("")) + '\'' +
+                ", url='" + url + '\'' +
+                ", username='" + username + '\'' +
                 '}';
     }
 }

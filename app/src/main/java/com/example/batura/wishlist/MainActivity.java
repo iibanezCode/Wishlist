@@ -1,9 +1,7 @@
 package com.example.batura.wishlist;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -11,19 +9,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.batura.wishlist.fragments.CuentaFragment;
 import com.example.batura.wishlist.fragments.FamiliasFragment;
+import com.example.batura.wishlist.fragments.ListaIndividualFragment;
 import com.example.batura.wishlist.fragments.ListasFragment;
 import com.example.batura.wishlist.fragments.MiListaFragment;
 import com.example.batura.wishlist.model.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    List<Product> products;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +83,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_Listas) {
-            // crearLista();
-            getSupportFragmentManager().beginTransaction().replace(R.id.contentMain, ListasFragment.newInstance()).commit();
+            ListasFragment listasFragment = new ListasFragment();
+            listasFragment.setFamiliaresProductos(crearLista());
+            getSupportFragmentManager().beginTransaction().replace(R.id.contentMain, listasFragment).commit();
         } else if (id == R.id.nav_Familias) {
             getSupportFragmentManager().beginTransaction().replace(R.id.contentMain, FamiliasFragment.newInstance()).commit();
         } else if (id == R.id.nav_MiLista) {
@@ -99,11 +99,41 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private void crearLista() {
-        Product product = new Product(0, "calcetines", "enlace");
-        Product product1 = new Product(0, "calcetines2", "enlace3");
+    private List<List<Product>> crearLista() {
+        List<Product> products = new ArrayList<>();
+        Product product = new Product(0, "calcetines", "http://www.google.es/", "Igor");
+        Product product1 = new Product(0, "calcetines2", "enlace3", "Igor");
+        Product product2 = new Product(0, "calcetines2", "enlace3", "Igor");
+        Product product3 = new Product(0, "calcetines2", "enlace3", "Igor");
+        Product product4 = new Product(0, "calcetines2", "enlace3", "Igor");
+        Product product5 = new Product(0, "calcetines2", "enlace3", "Igor");
+        Product product6 = new Product(0, "calcetines2", "enlace3", "Igor");
+        Product product7 = new Product(0, "calcetines2", "enlace3", "Igor");
+        Product product8 = new Product(0, "calcetines2", "enlace3", "Igor");
+        Product product9 = new Product(0, "calcetines2", "enlace3", "Igor");
+
         products.add(product);
         products.add(product1);
+        products.add(product2);
+        products.add(product3);
+        products.add(product4);
+        products.add(product5);
+        products.add(product6);
+        products.add(product7);
+        products.add(product8);
+        products.add(product9);
+
+        List<List<Product>> familiaresProductos = new ArrayList<>();
+        familiaresProductos.add(products);
+        familiaresProductos.add(products);
+        familiaresProductos.add(products);
+        familiaresProductos.add(products);
+        familiaresProductos.add(products);
+        familiaresProductos.add(products);
+        familiaresProductos.add(products);
+        familiaresProductos.add(products);
+        familiaresProductos.add(products);
+        return familiaresProductos;
     }
 
     private void checkSharedPreferences() {
