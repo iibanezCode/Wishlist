@@ -1,0 +1,70 @@
+-- ****************** SqlDBM: MySQL ******************;
+-- ***************************************************;
+
+
+-- ************************************** `user`
+
+CREATE TABLE `user`
+(
+ `id`       integer NOT NULL ,
+ `name`     varchar(45) NOT NULL ,
+ `email`    varchar(100) NOT NULL ,
+ `password` varchar(45) NOT NULL ,
+PRIMARY KEY (`id`)
+);
+
+
+
+
+
+
+-- ************************************** `family`
+
+CREATE TABLE `family`
+(
+ `id`   integer NOT NULL ,
+ `name` varchar(45) NOT NULL ,
+PRIMARY KEY (`id`)
+);
+
+
+
+
+
+
+-- ************************************** `userfamily`
+
+CREATE TABLE `userfamily`
+(
+ `id`         NOT NULL ,
+ `family_id` integer NOT NULL ,
+ `user_id`   integer NOT NULL ,
+PRIMARY KEY (`id`),
+KEY `fkIdx_24` (`family_id`),
+CONSTRAINT `FK_24` FOREIGN KEY `fkIdx_24` (`family_id`) REFERENCES `family` (`id`),
+KEY `fkIdx_27` (`user_id`),
+CONSTRAINT `FK_27` FOREIGN KEY `fkIdx_27` (`user_id`) REFERENCES `user` (`id`)
+);
+
+
+
+
+
+
+-- ************************************** `product`
+
+CREATE TABLE `product`
+(
+ `id`   integer NOT NULL ,
+ `name` varchar(100) NOT NULL ,
+ `url`  varchar(200) ,
+ `user` integer NOT NULL ,
+PRIMARY KEY (`id`),
+KEY `fkIdx_18` (`user`),
+CONSTRAINT `FK_18` FOREIGN KEY `fkIdx_18` (`user`) REFERENCES `user` (`id`)
+);
+
+
+
+
+
